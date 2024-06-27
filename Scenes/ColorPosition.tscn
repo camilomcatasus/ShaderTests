@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7cmsbt243qg0"]
+
+[ext_resource type="Shader" path="res://Shaders/ColorPosition.gdshader" id="1_npyrh"]
+[ext_resource type="Script" path="res://Movement.gd" id="2_e3brr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6yqdr"]
+render_priority = 0
+shader = ExtResource("1_npyrh")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radial_segments = 18
+rings = 10
+material = SubResource("ShaderMaterial_6yqdr")
+
+[node name="PivotY" type="Node3D" parent="."]
+
+[node name="PivotZ" type="Node3D" parent="PivotY"]
+
+[node name="Camera3D" type="Camera3D" parent="PivotY/PivotZ" node_paths=PackedStringArray("pivot_y", "pivot_z")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.3095)
+script = ExtResource("2_e3brr")
+pivot_y = NodePath("../..")
+pivot_z = NodePath("..")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://clv8rxigmphxk"]
+
+[ext_resource type="Shader" path="res://Shaders/learn_shell.gdshader" id="1_iu4js"]
+[ext_resource type="Script" path="res://Scenes/shell.gd" id="2_g6iaf"]
+[ext_resource type="Script" path="res://Movement.gd" id="3_3s8ke"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e5w7"]
+render_priority = 0
+shader = ExtResource("1_iu4js")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bjp7v"]
+material = SubResource("ShaderMaterial_7e5w7")
+
+[node name="LearningShell" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("PlaneMesh_bjp7v")
+skeleton = NodePath("../..")
+script = ExtResource("2_g6iaf")
+density = 100.0
+shell_count = 16
+shell_distance = 0.003
+
+[node name="PivotY" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976321, 2.06924)
+
+[node name="PivotZ" type="Node3D" parent="PivotY"]
+
+[node name="Camera3D" type="Camera3D" parent="PivotY/PivotZ" node_paths=PackedStringArray("pivot_y", "pivot_z")]
+transform = Transform3D(1, 0, 0, 0, 0.91436, 0.404902, 0, -0.404902, 0.91436, 0, 0, 0)
+script = ExtResource("3_3s8ke")
+pivot_y = NodePath("../..")
+pivot_z = NodePath("..")

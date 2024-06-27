@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhwgic03b1x20"]
+
+[ext_resource type="Script" path="res://Camera3D.gd" id="1_ekavw"]
+[ext_resource type="Shader" path="res://Shaders/shell.gdshader" id="1_w4p7r"]
+[ext_resource type="ArrayMesh" uid="uid://ckplbpbkvtw2q" path="res://Mesh/ball.obj" id="2_0fsri"]
+[ext_resource type="Script" path="res://Shell.gd" id="2_7wf2x"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.3095)
+script = ExtResource("1_ekavw")
+
+[node name="ShellObject" type="Node3D" parent="."]
+script = ExtResource("2_7wf2x")
+shell_mesh = ExtResource("2_0fsri")
+shell_shader = ExtResource("1_w4p7r")
+shell_length = 0.3
+thickness = 2.0
+shell_color = Color(0.39771, 0.745859, 0.73501, 1)
